@@ -45,7 +45,7 @@ if __name__ == "__main__":
     spiders.append({
         'settings' : reviews_settings,
         'spider' : ReviewSpider,
-        'arguments' : {'url' : url}
+        'arguments' : {}
     })
 
     for spider in spiders:
