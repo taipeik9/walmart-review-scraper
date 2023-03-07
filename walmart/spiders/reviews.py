@@ -13,9 +13,13 @@ class ReviewSpider(scrapy.Spider):
         'accept': 'application/json',
         'accept-encoding': 'gzip, deflate, br',
         'accept-language': 'en-US,en;q=0.9',
-        'referer': 'https://www.walmart.ca/browse/beauty/skin-care/facial-cleansers-toners/face-wash/6000198722778-6000195305341-6000195308541-6000198737951?icid=browse_l2_beauty_face_wash_3744_3QFXRBEJOA&fromFC=true',
-        'origin': 'https://www.walmart.ca'
+        'origin': 'https://www.walmart.ca',
+        # 'user-agent' : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
     }
+
+    def __init__(self, url, *args, **kwargs):
+        super(ReviewSpider, self).__init__(*args, **kwargs)
+        self.headers['referer'] = url
 
     def start_requests(self):
         with open('products.json') as f:

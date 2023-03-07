@@ -93,7 +93,7 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
 # Retrying blocked API Requests
-RETRY_HTTP_CODES = [412]
+RETRY_HTTP_CODES = [412, 520]
 
 # Middleware for Rotating User Agents
 DOWNLOADER_MIDDLEWARES = {
