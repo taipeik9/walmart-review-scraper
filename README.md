@@ -1,15 +1,11 @@
 # Walmart Reviews Scraper and NLP Analysis
 An efficient Walmart review scraper using only the Walmart API for any Walmart product category and NLP analysis on the reviews of Walmart products.
 
-To use the scraper:
+To use the scraper, change the url in the command line in the docker-compose.yml file. ex:
 ```
-scrapy crawl products -o products.json
+command: "python3 crawl.py '[url]'"
 ```
-
-Once the product spider is finished:
-```
-scrapy crawl reviews -o [filename].csv
-```
+Then just ```docker-compose up``` in the root folder with the ```--build``` flag if this is your first time running the script.
 
 ## Scraping Stats:
 

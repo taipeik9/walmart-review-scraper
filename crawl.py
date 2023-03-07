@@ -1,10 +1,11 @@
-import scrapy
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
 import multiprocessing
 
 import re
+
+import sys
 
 from walmart.spiders.products import ProductsSpider
 from walmart.spiders.reviews import ReviewSpider
@@ -13,9 +14,9 @@ def run_crawler(spider):
     process = CrawlerProcess(settings=spider['settings'])
     process.crawl(spider['spider'], **spider['arguments'])
     process.start() # the script will block here until the crawling is finished
-
+"https://www.walmart.ca/browse/beauty/skin-care/6000198722778-6000195305341?f=40601&icid=browse_l2_beauty_best_sellers_3754_HJ22HN793B&fromFC=true"
 if __name__ == "__main__":
-    url = 'https://www.walmart.ca/browse/beauty/skin-care/6000198722778-6000195305341?f=40601&icid=browse_l2_beauty_best_sellers_3754_HJ22HN793B&fromFC=true'
+    url = sys.argv[1]
     
     arguments = dict(
         url = url,
