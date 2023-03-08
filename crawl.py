@@ -14,15 +14,37 @@ def run_crawler(spider):
     process = CrawlerProcess(settings=spider['settings'])
     process.crawl(spider['spider'], **spider['arguments'])
     process.start() # the script will block here until the crawling is finished
-"https://www.walmart.ca/browse/beauty/skin-care/6000198722778-6000195305341?f=40601&icid=browse_l2_beauty_best_sellers_3754_HJ22HN793B&fromFC=true"
+
 if __name__ == "__main__":
     url = sys.argv[1]
+    try:
+        limit = int(sys.argv[2])
+    except IndexError:
+        limit = None
     
+    type = re.search(r'walmart.ca\/\w+', url).group().replace('walmart.ca/', '')
+
+    if type == 'brand':
+        type = 'browse'
+        query = f'f={re.search(r"[0-9]+", url).group()}'
+    else:
+        query = re.search(r'\w+=.+', url).group()
+
+    if re.search(r'-[0-9]+', url):
+        id = f"&c={re.findall(r'-[0-9]+', url)[-1][1:]}"
+    else:
+        id = ''
+    
+    if (not re.search(r'c=[0-9]+', query)) and (type == 'search'):
+        query = f'{query}&c=all'
+        
+
     arguments = dict(
         url = url,
-        id = re.findall(r'-[0-9]+', url)[-1][1:],
-        query = re.search(r'\w+=.+', url).group(),
-        limit = 30
+        id = id,
+        query = query,
+        limit = limit,
+        type = type
     )
 
     spiders = []

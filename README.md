@@ -1,10 +1,39 @@
 # Walmart Reviews Scraper and NLP Analysis
 An efficient Walmart review scraper using only the Walmart API for any Walmart product category and NLP analysis on the reviews of Walmart products.
 
+This scraper works on Walmart.ca only.
+
+Examples of valid urls, your url should have a similar structure as the following:
+
+**These urls are examples of valid category urls from walmart.ca**
+
+https://www.walmart.ca/browse/beauty/skin-care/facial-cleansers-toners/face-wash/6000198722778-6000195305341-6000195308541-6000198737951?icid=browse_l2_beauty_face_wash_3744_3QFXRBEJOA&fromFC=true
+
+https://www.walmart.ca/browse/beauty/skin-care/face-moisturizers/6000198722778-6000195305341-6000195309547?icid=browse_l2_beauty_face_moisturizers_3743_23HEAAILKN&fromFC=true
+
+**These urls are examples of valid search urls from walmart.ca**
+
+https://www.walmart.ca/search?q=cerave&c=6000198722778
+
+https://www.walmart.ca/search?q=cereal
+
+**This url is an example of a valid brand url from walmart.ca**
+
+https://www.walmart.ca/brand/l-or-al-paris/51036683
+
+Note: None of these links have a page value "p=", the scraper will always start at page one, don't include the page value in the link
+
 To use the scraper, change the url in the command line in the docker-compose.yml file. ex:
 ```
 command: "python3 crawl.py '[url]'"
 ```
+
+If you want to limit the number of products in the scraper you can use the optional limit argument. This will be an int after the url
+```
+command: "python3 crawl.py '[url]' [int]"
+```
+Note: The limit argument is not exact, often it can be over or under by one or two products.
+
 Then just ```docker-compose up``` in the root folder with the ```--build``` flag if this is your first time running the script.
 
 ## Scraping Stats:

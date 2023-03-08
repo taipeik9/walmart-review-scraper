@@ -20,17 +20,18 @@ class ProductsSpider(scrapy.Spider):
         'origin': 'https://www.walmart.ca',
     }
 
-    def __init__(self, url, id, query, limit, *args, **kwargs):
+    def __init__(self, url, type, id, query, limit, *args, **kwargs):
         super(ProductsSpider, self).__init__(*args, **kwargs)
         self.id = id
         self.query = query
         self.limit = limit
         self.headers['referer'] = url
+        self.type = type
         
     
     def start_requests(self):
         yield scrapy.Request(
-            url=f'https://www.walmart.ca/api/bsp/browse?lang=en&c={self.id}&experience=whiteGM&{self.query}&p=1',
+            url=f'https://www.walmart.ca/api/bsp/{self.type}?lang=en{self.id}&experience=whiteGM&{self.query}&p=1',
             headers=self.headers,
             meta={
                 'page' : 2
@@ -73,8 +74,8 @@ class ProductsSpider(scrapy.Spider):
 
         if r['items']['products']:
             yield scrapy.Request(
-                url=f'https://www.walmart.ca/api/bsp/browse?lang=en&c={self.id}&experience='
-                f'whiteGM&{self.query}&p={response.request.meta["page"]}',
+                url=f'https://www.walmart.ca/api/bsp/{self.type}?lang=en{self.id}'
+                f'&experience=whiteGM&{self.query}&p={response.request.meta["page"]}',
                 headers=self.headers,
                 meta={
                     'page' : response.request.meta['page'] + 1
