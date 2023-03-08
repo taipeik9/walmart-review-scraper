@@ -134,3 +134,6 @@ dmypy.json
 # ignoring large data files
 *.csv
 *.json
+
+# ignore untracked folder
+/untracked
