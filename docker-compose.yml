@@ -5,10 +5,6 @@ services:
       context: .
       dockerfile: Dockerfile
     image: walmart-scraper
-    # command: "python3 crawl.py 'https://www.walmart.ca/browse/beauty/skin-care/6000198722778-6000195305341?f=40601&icid=browse_l2_beauty_best_sellers_3754_HJ22HN793B&fromFC=true' 30"
-    # command: "python3 crawl.py 'https://www.walmart.ca/search?q=cerave&c=6000198722778' 30"
-    # command: "python3 crawl.py 'https://www.walmart.ca/search?q=cereal' 30"
-    # command: "python3 crawl.py 'https://www.walmart.ca/brand/l-or-al-paris/51036683' 30"
     command: "python3 crawl.py 'https://www.walmart.ca/search?q=cerave&c=6000198722778'"
     volumes:
       - .:/app

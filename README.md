@@ -3,7 +3,13 @@ An efficient Walmart review scraper using only the Walmart API for any Walmart p
 
 This scraper works on Walmart.ca only.
 
-Examples of valid urls, your url should have a similar structure as the following:
+Valid urls:
+- Category
+- Search
+- Brand
+- Indivual Product
+
+Examples of valid urls, your url should have a similar structure as one of the following:
 
 **These urls are examples of valid category urls from walmart.ca**
 
@@ -21,7 +27,13 @@ https://www.walmart.ca/search?q=cereal
 
 https://www.walmart.ca/brand/l-or-al-paris/51036683
 
+**This url is an example of a valid individual product url from walmart.ca**
+
+https://www.walmart.ca/en/ip/neutrogena-hydro-boost-facial-gel-cream-for-extra-dry-skin-hyaluronic-acid-to-hydrate-skin-gel-moisturizer/6000192034941
+
 Note: None of these links have a page value "p=", the scraper will always start at page one, don't include the page value in the link
+
+## Using the scraper
 
 To use the scraper, change the url in the command line in the docker-compose.yml file. ex:
 ```

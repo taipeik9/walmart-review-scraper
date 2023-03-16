@@ -52,7 +52,8 @@ class ProductsSpider(scrapy.Spider):
                 avg_rating = products[id]['rating']['averageRating'] if products[id]['rating'] else None,
                 total_ratings = products[id]['rating']['totalCount'] if products[id]['rating'] else None,
                 desc = products[id]['description'],
-                facets = products[id]['skus'][products[id]['skuIds'][0]]['facets']
+                facets = products[id]['skus'][products[id]['skuIds'][0]]['facets'],
+                categories = products[id]['skus'][products[id]['skuIds'][0]]['categories']
             )
             if self.limit:
                 self.total_products += 1
@@ -96,7 +97,8 @@ class ProductsSpider(scrapy.Spider):
                 avg_rating = products[id]['rating']['averageRating'] if products[id]['rating'] else None,
                 total_ratings = products[id]['rating']['totalCount'] if products[id]['rating'] else None,
                 desc = products[id]['description'],
-                facets = products[id]['skus'][products[id]['skuIds'][0]]['facets']
+                facets = products[id]['skus'][products[id]['skuIds'][0]]['facets'],
+                categories = products[id]['skus'][products[id]['skuIds'][0]]['categories']
             )
             if self.limit:
                 self.total_products += 1
